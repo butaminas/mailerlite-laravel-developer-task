@@ -1,0 +1,26 @@
+{
+  "resources/js/assets/home-hero.jpg": {
+    "file": "assets/home-hero-408c0abd.jpg",
+    "src": "resources/js/assets/home-hero.jpg"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-71ad89fb.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-ad3092e9.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.ts": {
+    "file": "assets/app-4778f7fd.js",
+    "src": "resources/js/app.ts",
+    "isEntry": true,
+    "css": [
+      "assets/app-71ad89fb.css"
+    ],
+    "assets": [
+      "assets/home-hero-408c0abd.jpg"
+    ]
+  }
+}
