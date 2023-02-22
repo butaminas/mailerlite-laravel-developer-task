@@ -16,15 +16,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Subscribers
-Route::prefix('subscribers')->group(function () {
-    Route::get('/get/single', [SubscriberController::class, 'getSingle']);
-    Route::get('/get/all', [SubscriberController::class, 'getAll']);
-    Route::post('/upsert', [SubscriberController::class, 'create']);
-    Route::delete('/delete', [SubscriberController::class, 'delete']);
-});
+Route::apiResource('subscriber', SubscriberController::class);
+
+//Route::resource('subscribers', SubscriberController::class);
+//Route::prefix('subscribers')->group(function () {
+//    Route::get('/get/single', [SubscriberController::class, 'getSingle']);
+//    Route::get('/get/all', [SubscriberController::class, 'getAll']);
+//    Route::post('/upsert', [SubscriberController::class, 'create']);
+//    Route::delete('/delete', [SubscriberController::class, 'delete']);
+//});
 // Fields
-Route::prefix('fields')->group(function () {
-    Route::get('/get/all', [FieldController::class, 'getAll']);
+Route::apiResource('fields', FieldController::class)->only([
+    'index'
+]);
+//Route::prefix('fields')->group(function () {
+//    Route::get('/get/all', [FieldController::class, 'getAll']);
 //    Route::post('/create', [FieldController::class, 'create']);
 //    Route::delete('/delete', [SubscriberController::class, 'delete']);
-});
+//});

@@ -1,9 +1,17 @@
 {
-    "name": "laravel/laravel",
+    "name": "butaminas/mailerlite-laravel-developer-task",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Submission for the MailerLite Laravel Developer Task. Feel free to use this for educational purposes.",
+    "keywords": ["laravel", "vue", "mailerlite"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Mindaugas Kristutis",
+            "email": "mindaugas@devrunners.com",
+            "homepage": "https://devrunners.com",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^8.0.2",
         "guzzlehttp/guzzle": "^7.2",
@@ -11,6 +19,7 @@
         "laravel/tinker": "^2.7"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",

@@ -10,7 +10,7 @@ use Validator;
 
 class FieldController extends Controller
 {
-    public function getAll(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request): \Illuminate\Http\JsonResponse
     {
         try {
             $validator = Validator::make($request->all(), [
