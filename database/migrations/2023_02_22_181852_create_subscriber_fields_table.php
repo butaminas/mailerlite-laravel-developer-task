@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('fields', function (Blueprint $table) {
+        Schema::create('subscriber_fields', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->tinyInteger('type');
+            $table->unsignedBigInteger('subscriber_id');
+            $table->unsignedBigInteger('field_id');
+            $table->text('value');
             $table->timestamps();
+            $table->foreign('subscriber_id')->references('id')->on('subscribers')->onDelete('cascade');
+            $table->foreign('field_id')->references('id')->on('fields')->onDelete('cascade');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fields');
+        Schema::dropIfExists('subscriber_fields');
     }
 };

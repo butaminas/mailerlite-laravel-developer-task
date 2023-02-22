@@ -11,7 +11,7 @@ class Field extends Model
     use HasFactory;
 
     protected $fillable = [
-        'sub_id', 'title', 'type', 'value'
+        'title', 'type', 'value'
     ];
 
     protected function type(): Attribute
