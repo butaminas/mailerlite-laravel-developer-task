@@ -20,7 +20,7 @@ class SubscriberFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'email' => fake()->unique()->freeEmail(),
             'state' => ['Active', 'Unsubscribed', 'Junk', 'Bounced', 'Unconfirmed'][random_int(0,4)]
         ];
     }

@@ -17,9 +17,8 @@ class FieldFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->name(),
-            'type' => ['Date', 'Number', 'Boolean', 'String'][random_int(0,3)],
-            'value' => fake()->text()
+            'title' => 'Username',
+            'type' => 0
         ];
     }
 }

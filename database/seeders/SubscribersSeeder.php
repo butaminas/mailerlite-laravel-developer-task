@@ -9,10 +9,6 @@ use Illuminate\Database\Seeder;
 
 class SubscribersSeeder extends Seeder
 {
-    public function subscriber(): array
-    {
-        return Subscriber::factory()->raw();
-    }
     /**
      * Run the database seeds.
      *
@@ -20,11 +16,11 @@ class SubscribersSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('subscribers')->insert($this->subscriber());
-        DB::table('subscribers')->insert($this->subscriber());
-        DB::table('subscribers')->insert($this->subscriber());
-        DB::table('subscribers')->insert($this->subscriber());
-        DB::table('subscribers')->insert($this->subscriber());
-        DB::table('subscribers')->insert($this->subscriber());
+        DB::table('subscribers')->insert(Subscriber::factory()->raw());
+        DB::table('subscribers')->insert(Subscriber::factory()->raw());
+        DB::table('subscribers')->insert(Subscriber::factory()->raw());
+        DB::table('subscribers')->insert(Subscriber::factory()->raw());
+        DB::table('subscribers')->insert(Subscriber::factory()->raw());
+        DB::table('subscribers')->insert(Subscriber::factory()->raw());
     }
 }
