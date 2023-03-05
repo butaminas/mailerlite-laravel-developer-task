@@ -15,6 +15,10 @@ class Subscriber extends Model
         'name', 'email', 'state'
     ];
 
+    protected $hidden = [
+        'created_at', 'updated_at'
+    ];
+
     protected $with = ['fields'];
 
     public function fields(): HasMany

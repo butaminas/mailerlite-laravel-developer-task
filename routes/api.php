@@ -19,4 +19,4 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('subscriber', SubscriberController::class);
 
 // Fields
-Route::apiResource('fields', FieldController::class);
+Route::apiResource('field', FieldController::class);

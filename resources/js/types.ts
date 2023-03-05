@@ -1,5 +1,5 @@
 interface SubscriberType {
-    id?: number
+    id?: number | boolean
     name: string
     email: string
     state: string
@@ -7,9 +7,19 @@ interface SubscriberType {
 }
 
 interface SubscriberFieldType {
+    id?: number | boolean
+    field_id?: number
     title: string
+    newTitle?: string
     type: string
-    value: string
+    newType?: string
+    editing?: boolean
+    value?: string
 }
 
-export type { SubscriberType, SubscriberFieldType }
+interface AppStateType {
+    fieldsDrawer: boolean
+    subscribersDrawer: boolean
+}
+
+export type { SubscriberType, SubscriberFieldType, AppStateType }

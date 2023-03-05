@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-disabled.loading, .btn[disabled] {
+    &.loading {
+        color: white;
+    }
+}

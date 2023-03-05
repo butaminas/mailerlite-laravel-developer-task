@@ -15,16 +15,22 @@ class SubscriberField extends Model
     ];
 
     protected $hidden = [
-        'subscriber_id', 'field_id', 'created_at', 'updated_at'
+        'created_at', 'updated_at', 'subscriber_id', 'id'
     ];
+
+    protected $appends = ['title'];
 
     public function field(): HasOne
     {
-        return $this->hasOne(Field::class);
+        return $this->hasOne(Field::class, 'id', 'field_id');
     }
 
     public function subscriber(): HasOne
     {
-        return $this->hasOne(Subscriber::class);
+        return $this->hasOne(Subscriber::class, 'id', 'subscriber_id');
+    }
+
+    public function getTitleAttribute() {
+        return $this->field?->title;
     }
 }

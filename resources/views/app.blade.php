@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <title>MailerLite Task</title>
 
-    @vite('resources/css/app.css')
+    @vite('resources/css/app.scss')
 </head>
 <body>
 <div id="app"></div>

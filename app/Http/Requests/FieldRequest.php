@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SubscriberRequest extends FormRequest
+class FieldRequest extends FormRequest
 {
     protected $stopOnFirstFailure = true;
 
@@ -18,12 +18,8 @@ class SubscriberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns|max:255|unique:subscribers,email,'.$this->subscriber,
-            'state' => 'required|string|max:255|not_in:Select state',
-            'fields' => 'nullable|array',
-            'fields.*.id' => 'sometimes|integer',
-            'fields.*.value' => 'nullable'
+            'title' => 'required|string|max:255|unique:fields,title,'. $this->field,
+            'type' => 'required|string|max:255'
         ];
     }
 
