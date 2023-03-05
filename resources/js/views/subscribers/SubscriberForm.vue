@@ -139,6 +139,8 @@ watch(
             setTimeout(() => {
                 resetForm()
             }, 300)
+        } else {
+            state.subscriber.fields = subscriberFields.value
         }
     }
 )

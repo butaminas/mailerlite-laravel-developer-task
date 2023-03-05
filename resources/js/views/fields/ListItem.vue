@@ -3,7 +3,7 @@
         <div
             v-for="(field, i) in subFields"
             :key="'field' + field.id"
-            class="w-full flex space-x-3 py-2"
+            class="flex w-full space-x-3 py-2"
         >
             <span class="w-full flex-grow flex-wrap self-center">
                 <div v-if="field.editing" class="form-control flex space-y-2">

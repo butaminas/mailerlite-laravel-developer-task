@@ -1,13 +1,13 @@
 <template>
     <div class="w-full overflow-x-auto">
-        <progress v-if="loadingData" class="progress h-1 w-full" />
         <table
             class="table w-full border-2 border-solid border-base-200 shadow-sm"
         >
+            <progress v-if="loadingData" class="progress h-1 w-full absolute top-0 left-0" />
             <!-- head -->
             <thead>
                 <tr>
-                    <th>Name / Email</th>
+                    <th>Name</th>
                     <th>Email</th>
                     <th>Other</th>
                     <th>Status</th>

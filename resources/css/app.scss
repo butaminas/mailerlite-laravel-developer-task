@@ -7,3 +7,7 @@
         color: white;
     }
 }
+
+.table th:first-child {
+    position: static;
+}
