@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FieldRequest;
 use App\Models\Field;
-use App\Models\Subscriber;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Validator;
 
 class FieldController extends Controller
 {
@@ -39,7 +35,6 @@ class FieldController extends Controller
 
             return response()->json($field->id);
         } catch (\Exception $e) {
-            $field?->delete();
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

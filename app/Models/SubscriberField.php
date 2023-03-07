@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class SubscriberField extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'subscriber_id', 'field_id'
+        'subscriber_id', 'field_id', 'value'
     ];
 
     protected $hidden = [

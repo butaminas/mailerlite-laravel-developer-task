@@ -17,10 +17,15 @@ class SubscriberRequest extends FormRequest
 
     public function rules(): array
     {
+        $updateRules = match($this->method()){
+            'PUT', 'PATCH' => '|sometimes',
+            default => ''
+        };
+
         return [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email:rfc,dns|max:255|unique:subscribers,email,'.$this->subscriber,
-            'state' => 'required|string|max:255|not_in:Select state',
+            'name' => 'required|string|max:255'. $updateRules,
+            'email' => 'required|email:rfc,dns|max:255|unique:subscribers,email,'.$this->subscriber. $updateRules,
+            'state' => 'required|string|max:255|not_in:Select state'. $updateRules,
             'fields' => 'nullable|array',
             'fields.*.id' => 'sometimes|integer',
             'fields.*.value' => 'nullable'

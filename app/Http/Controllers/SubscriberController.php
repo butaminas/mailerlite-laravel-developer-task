@@ -48,7 +48,6 @@ class SubscriberController extends Controller
 
             return response()->json(true);
         } catch (\Exception $e) {
-            $newSub?->delete();
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

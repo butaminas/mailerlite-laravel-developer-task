@@ -17,9 +17,14 @@ class FieldRequest extends FormRequest
 
     public function rules(): array
     {
+        $updateRules = match($this->method()){
+            'PUT', 'PATCH' => '|sometimes',
+            default => ''
+        };
+
         return [
-            'title' => 'required|string|max:255|unique:fields,title,'. $this->field,
-            'type' => 'required|string|max:255'
+            'title' => 'required|string|max:255|unique:fields,title,'. $this->field . $updateRules,
+            'type' => 'required|string|max:255'. $updateRules
         ];
     }
 
