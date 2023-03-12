@@ -67,7 +67,7 @@ The task to submit was to create an API for managing two resources and their rel
 <!-- Env Variables -->
 ### :key: Environment Variables
 
-.env file is commited intentionally as it was the requirement for the task, therefore, you can just pull and launch the project real fast.
+.env file is commited intentionally as it was the requirement for the task, therefore, you can just pull and launch the project real fast.<br />
 (Front-end production build files are included as well, as this was a task requirement in case any enviroment compatibility issues would occur)
 
 
