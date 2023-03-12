@@ -3,18 +3,28 @@
         <table
             class="table w-full border-2 border-solid border-base-200 shadow-sm"
         >
-            <progress v-if="loadingData" class="progress h-1 w-full absolute top-0 left-0" />
+            <progress
+                v-if="loadingData"
+                class="progress absolute top-0 left-0 h-1 w-full"
+            />
             <!-- head -->
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Other</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Other</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
+                <tr v-if="loadingData">
+                    <td>Loading data...</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 <tr v-for="subItem in items" :key="subItem.id">
                     <td>{{ subItem.name }}</td>
                     <td>{{ subItem.email }}</td>
@@ -23,9 +33,9 @@
                             class="flex flex-wrap items-center text-sm opacity-50"
                         >
                             <div
-                                class="w-full"
                                 v-for="field in subItem.fields"
                                 :key="field.id"
+                                class="w-full"
                             >
                                 <b>{{ field.title }}:</b> {{ field.value }}
                             </div>
@@ -40,7 +50,7 @@
                     </td>
                     <th class="space-x-3">
                         <button
-                            class="btn btn-ghost btn-primary btn-xs"
+                            class="btn-primary btn-ghost btn btn-xs"
                             :disabled="state.deletingItems.includes(subItem.id)"
                             @click="
                                 ;(subscribersStore.subToEdit = { ...subItem }),
@@ -51,7 +61,7 @@
                             <span class="ml-1">Edit</span>
                         </button>
                         <button
-                            class="btn-error btn btn-outline btn-xs"
+                            class="btn-error btn-outline btn btn-xs"
                             :class="{
                                 loading: state.deletingItems.includes(
                                     subItem.id
@@ -77,7 +87,8 @@
     <div class="flex w-full">
         <div class="flex-grow">
             <button
-                class="drawer-button btn btn-primary btn-outline btn-sm"
+                id="fieldsDrawerTrigger"
+                class="drawer-button btn-primary btn-outline btn btn-sm"
                 @click="appState.fieldsDrawer = !appState.fieldsDrawer"
             >
                 Manage Fields
@@ -85,6 +96,7 @@
         </div>
         <div class="flex-none gap-1">
             <PaginationComponent
+                v-if="lastPage > 0"
                 :get-items="getItems"
                 :page="page"
                 :last-page="lastPage"
@@ -103,6 +115,7 @@ import { useSubscribersStore } from "../../store/subscribersStore"
 import { inject } from "vue"
 import { storeToRefs } from "pinia"
 import { useCrud } from "../../composables/crudOperations"
+import { AppStateType } from "../../types"
 
 const subscribersStore = useSubscribersStore()
 const { updateSubs } = storeToRefs(subscribersStore)
@@ -113,7 +126,7 @@ const { page, lastPage, loadingData, items, getItems } = usePagination(
 )
 const { deleteItem } = useCrud("/subscriber")
 
-const appState = inject("appState")
+const appState = inject("appState") as AppStateType
 const state = reactive({
     deletingItems: [] as number[]
 })

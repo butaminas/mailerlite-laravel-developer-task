@@ -44,9 +44,7 @@ export function usePagination(url: string, perPage = 20, paginate = true) {
                     }
                 }
                 axios
-                    .request({
-                        method: "get",
-                        url,
+                    .get(url, {
                         params: defaultConfig,
                         signal: state.abortController.signal
                     })

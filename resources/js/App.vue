@@ -4,11 +4,13 @@
     </Transition>
     <div class="drawer">
         <input
+            hidden
             :checked="state.subscribersDrawer"
             type="checkbox"
             class="drawer-toggle"
         />
         <input
+            hidden
             :checked="state.fieldsDrawer"
             type="checkbox"
             class="drawer-toggle"
@@ -29,15 +31,19 @@
                 </div>
             </div>
         </div>
-        <SubscribersDrawer v-if="!state.fieldsDrawer" />
-        <FieldsDrawer v-if="!state.subscribersDrawer" />
+        <Transition name="slide-in-right">
+            <SubscribersDrawer v-if="state.subscribersDrawer" />
+        </Transition>
+        <Transition name="slide-in-right">
+            <FieldsDrawer v-if="state.fieldsDrawer" />
+        </Transition>
     </div>
 </template>
 
 <script lang="ts" setup>
 import ErrorAlert from "./components/ErrorAlert.vue"
 import FieldsDrawer from "./views/fields/FieldsDrawer.vue"
-import SubscribersDrawer from "./views/subscribers/SubscribersDrawer.vue"
+import SubscribersDrawer from "./views/subscribers/SubscriberDrawer.vue"
 import { provide, reactive } from "vue"
 import { AppStateType } from "./types"
 
@@ -48,15 +54,3 @@ const state = reactive<AppStateType>({
 
 provide("appState", state)
 </script>
-
-<style>
-.v-enter-active,
-.v-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.v-enter-from,
-.v-leave-to {
-    opacity: 0;
-}
-</style>

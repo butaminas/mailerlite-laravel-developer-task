@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 
 export const useUtilitiesStore = defineStore("UtilitiesStore", {
-    status: () => ({
+    state: () => ({
         message: null as null | { text: string; error?: boolean }
     })
 })

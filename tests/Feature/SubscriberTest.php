@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\Subscriber;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 it('does not create a subscriber without missing fields', function () {
     $response = $this->postJson('/api/subscriber', []);

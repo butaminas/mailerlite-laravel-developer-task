@@ -1,5 +1,5 @@
 <template>
-    <div class="drawer-side">
+    <div id="fieldsDrawer" class="drawer-side">
         <label
             class="drawer-overlay"
             @click="appState.fieldsDrawer = !appState.fieldsDrawer"
@@ -10,7 +10,8 @@
             <div class="card-title sticky mt-4 justify-between px-8">
                 <h2 class="justify-center">Subscriber Fields</h2>
                 <label
-                    class="btn btn-primary btn-xs btn-circle self-end"
+                    id="closeBtn"
+                    class="btn-primary btn btn-xs btn-circle self-end"
                     @click="appState.fieldsDrawer = !appState.fieldsDrawer"
                     >✕</label
                 >
@@ -23,8 +24,9 @@
 <script setup lang="ts">
 import FieldsList from "../fields/FieldsList.vue"
 import { inject } from "vue"
+import { AppStateType } from "../../types"
 
-const appState = inject("appState")
+const appState = inject("appState") as AppStateType
 </script>
 
 <style scoped></style>

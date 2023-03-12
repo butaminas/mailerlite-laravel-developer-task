@@ -5,7 +5,7 @@
             :key="'field' + field.id"
             class="flex w-full space-x-3 py-2"
         >
-            <span class="w-full flex-grow flex-wrap self-center">
+            <div class="w-full flex-grow flex-wrap self-center">
                 <div v-if="field.editing" class="form-control flex space-y-2">
                     <input
                         v-model="field.newTitle"
@@ -33,18 +33,20 @@
                         {{ field.type }}
                     </div>
                 </div>
-            </span>
-            <span class="self-center">
+            </div>
+            <div class="self-center">
                 <div v-if="field.editing" class="flex flex-wrap space-y-2">
                     <button
-                        class="btn btn-ghost btn-xs"
+                        id="saveFieldBtn"
+                        class="btn-ghost btn-xs btn"
                         @click="saveChanges(field)"
                     >
                         <CheckIcon class="h-3 w-4" />
                         <span class="ml-1">Save</span>
                     </button>
                     <button
-                        class="btn-error btn btn-outline btn-xs"
+                        id="cancelFieldBtn"
+                        class="btn-outline btn-error btn-xs btn"
                         @click="cancelEdit(i)"
                     >
                         <XMarkIcon class="h-3 w-4" />
@@ -53,21 +55,23 @@
                 </div>
                 <div v-else class="flex flex-wrap space-y-2">
                     <button
-                        class="btn btn-ghost btn-xs"
+                        id="editFieldBtn"
+                        class="btn-ghost btn-xs btn"
                         @click="editField(field)"
                     >
                         <PencilIcon class="h-3 w-4" />
                         <span class="ml-1">Edit</span>
                     </button>
                     <button
-                        class="btn-error btn btn-outline btn-xs"
+                        id="deleteFieldBtn"
+                        class="btn-outline btn-error btn-xs btn"
                         @click="deleteSubField(i)"
                     >
                         <TrashIcon class="h-3 w-4" />
                         <span class="ml-1">Delete</span>
                     </button>
                 </div>
-            </span>
+            </div>
         </div>
     </TransitionGroup>
 </template>

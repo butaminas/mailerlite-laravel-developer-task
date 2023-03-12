@@ -7,6 +7,7 @@
             <input
                 v-model="state.subscriber.name"
                 type="text"
+                maxlength="255"
                 placeholder="Name"
                 class="input-bordered input w-full"
             />
@@ -16,6 +17,7 @@
             <input
                 v-model="state.subscriber.email"
                 type="email"
+                maxlength="255"
                 placeholder="Email address"
                 class="input-bordered input w-full"
             />
@@ -23,6 +25,7 @@
                 <span class="label-text">State</span>
             </label>
             <select
+                id="selectState"
                 v-model="state.subscriber.state"
                 class="select-bordered select"
             >
@@ -41,12 +44,15 @@
                     v-if="inputType(field.type) !== 'checkbox'"
                     v-model="field.value"
                     :type="inputType(field.type)"
+                    maxlength="255"
+                    :name="field.title"
                     placeholder="Enter field value"
                     class="input-bordered input w-full"
                 />
                 <select
                     v-else
                     v-model="field.value"
+                    :name="field.title"
                     class="select-bordered select w-full"
                 >
                     <option value="" disabled selected>
@@ -61,7 +67,7 @@
         <!-- end input fields -->
         <div class="card-actions mt-4 justify-center lg:justify-start">
             <button
-                class="btn btn-primary btn-block"
+                class="btn-primary btn btn-block"
                 :disabled="creatingItem || updatingItem"
                 :class="{ loading: creatingItem || updatingItem }"
                 @click="saveChanges()"
@@ -76,12 +82,13 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, reactive, watch } from "vue"
+import { onBeforeMount, onBeforeUnmount, reactive } from "vue"
 import { useSubscribersStore } from "../../store/subscribersStore"
 import { storeToRefs } from "pinia"
-import { AppStateType, SubscriberType } from "../../types"
+import { SubscriberType } from "../../types"
 import { useFieldsStore } from "../../store/fieldsStore"
 import { useCrud } from "../../composables/crudOperations"
+import { usePagination } from "../../composables/usePagination"
 
 const subscribersStore = useSubscribersStore()
 const fieldsStore = useFieldsStore()
@@ -92,7 +99,7 @@ const { subscriberFields } = storeToRefs(fieldsStore)
 const { updateItem, updatingItem, createItem, creatingItem } =
     useCrud("/subscriber")
 
-const appState = inject("appState") as AppStateType
+const { items, getItems } = usePagination("/field", undefined, false)
 
 const state = reactive({
     subscriber: {
@@ -103,54 +110,42 @@ const state = reactive({
     } as SubscriberType
 })
 
-watch(
-    () => subscriberFields.value,
-    (newVal) => {
-        state.subscriber.fields = newVal
+onBeforeMount(async () => {
+    if (subscriberFields.value.length === 0) {
+        await getItems()
+        subscriberFields.value = items.value
     }
-)
+    state.subscriber.fields = subscriberFields.value
+    addSubToEdit()
+})
 
-watch(
-    () => subToEdit.value,
-    (newVal) => {
-        state.subscriber.fields = subscriberFields.value
-        if (newVal) {
-            state.subscriber.id = newVal.id
-            state.subscriber.name = newVal.name
-            state.subscriber.email = newVal.email
-            state.subscriber.state = newVal.state
+onBeforeUnmount(() => {
+    resetForm()
+})
 
-            if (state.subscriber.fields && state.subscriber.fields.length > 0) {
-                state.subscriber.fields.map((e) => {
-                    e.value =
-                        newVal?.fields?.find((f) => f.field_id === e.id)
-                            ?.value ?? ""
-                    return e
-                })
-            }
+const addSubToEdit = () => {
+    if (subToEdit.value) {
+        state.subscriber.id = subToEdit.value.id
+        state.subscriber.name = subToEdit.value.name
+        state.subscriber.email = subToEdit.value.email
+        state.subscriber.state = subToEdit.value.state
+
+        if (state.subscriber.fields && state.subscriber.fields.length > 0) {
+            state.subscriber.fields.map((e) => {
+                e.value =
+                    subToEdit.value?.fields?.find((f) => f.field_id === e.id)
+                        ?.value ?? ""
+                return e
+            })
         }
     }
-)
-
-watch(
-    () => appState.subscribersDrawer,
-    (newVal) => {
-        if (!newVal) {
-            setTimeout(() => {
-                resetForm()
-            }, 300)
-        } else {
-            state.subscriber.fields = subscriberFields.value
-        }
-    }
-)
+}
 
 const saveChanges = () => {
     if (state.subscriber.id) {
         updateItem(state.subscriber).then((updated) => {
             if (updated) {
                 subscribersStore.updateSubs = true
-                console.log(subscriberFields.value)
             }
         })
     } else {
@@ -172,8 +167,8 @@ const resetForm = () => {
     subToEdit.value = null
 }
 
-const inputType = (type: string) => {
-    switch (type.toLowerCase()) {
+const inputType = (type: string | undefined) => {
+    switch (type?.toLowerCase()) {
         case "number":
             return "number"
         case "date":

@@ -11,7 +11,7 @@ interface SubscriberFieldType {
     field_id?: number
     title: string
     newTitle?: string
-    type: string
+    type?: string
     newType?: string
     editing?: boolean
     value?: string

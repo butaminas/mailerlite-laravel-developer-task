@@ -1,6 +1,9 @@
 <?php
 
 use App\Models\Field;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 it('does not create a field without missing fields', function () {
     $response = $this->postJson('/api/field', []);

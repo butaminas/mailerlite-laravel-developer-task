@@ -5,8 +5,11 @@
     <div class="mb-5 flex w-full flex-row">
         <div class="flex-1">
             <button
+                id="addSubTrigger"
                 class="drawer-button btn-primary btn btn-sm"
-                @click="appState.subscribersDrawer = !appState.subscribersDrawer"
+                @click="
+                    appState.subscribersDrawer = !appState.subscribersDrawer
+                "
             >
                 + subscriber
             </button>
@@ -22,6 +25,7 @@
 <script setup lang="ts">
 import SubscriberList from "./subscribers/SubscriberList.vue"
 import { inject } from "vue"
+import { AppStateType } from "../types"
 
-const appState = inject("appState")
+const appState = inject("appState") as AppStateType
 </script>

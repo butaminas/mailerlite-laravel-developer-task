@@ -1,6 +1,9 @@
 <template>
-    <div ref="fieldsFormRef" class="card-body h-[calc(100vh-45px)] overflow-y-auto">
-        <button class="btn btn-sm" @click="addSubField()">
+    <div
+        ref="fieldsFormRef"
+        class="card-body h-[calc(100vh-45px)] overflow-y-auto"
+    >
+        <button id="addNewField" class="btn btn-sm" @click="addSubField()">
             Add new field
         </button>
         <progress v-if="loadingData" class="progress h-1 w-full" />
@@ -9,35 +12,25 @@
 </template>
 
 <script lang="ts" setup>
-import { inject, onBeforeMount, provide, watch, ref } from "vue"
+import { onBeforeMount, provide, ref } from "vue"
 import ListItem from "./ListItem.vue"
 import { usePagination } from "../../composables/usePagination"
 import { useFieldsStore } from "../../store/fieldsStore"
-import { AppStateType } from "../../types"
 
-const appState = inject("appState") as AppStateType
 const fieldsStore = useFieldsStore()
 
-const { loadingData, items, getItems } = usePagination("/field", 5, false)
+const { loadingData, items, getItems } = usePagination(
+    "/field",
+    undefined,
+    false
+)
 
 const fieldsFormRef = ref<InstanceType<typeof HTMLDivElement>>()
 
-onBeforeMount(() => {
-    getItems().then(() => {
-        fieldsStore.subscriberFields = items.value
-    })
+onBeforeMount(async () => {
+    await getItems()
+    fieldsStore.subscriberFields = items.value
 })
-
-watch(
-    () => appState.fieldsDrawer,
-    (newVal) => {
-        if (newVal) {
-            getItems().then(() => {
-                fieldsStore.subscriberFields = items.value
-            })
-        }
-    }
-)
 
 provide("subFields", items)
 

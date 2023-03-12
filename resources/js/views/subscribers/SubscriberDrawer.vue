@@ -1,5 +1,5 @@
 <template>
-    <div class="drawer-side">
+    <div id="subscribersDrawer" class="drawer-side">
         <label
             class="drawer-overlay"
             @click="appState.subscribersDrawer = !appState.subscribersDrawer"
@@ -16,7 +16,8 @@
                     }}
                 </h2>
                 <label
-                    class="btn btn-primary btn-xs btn-circle self-end"
+                    id="closeBtn"
+                    class="btn-primary btn btn-xs btn-circle self-end"
                     @click="
                         appState.subscribersDrawer = !appState.subscribersDrawer
                     "
@@ -32,10 +33,9 @@
 import SubscriberForm from "./SubscriberForm.vue"
 import { inject } from "vue"
 import { useSubscribersStore } from "../../store/subscribersStore"
+import { AppStateType } from "../../types"
 
 const subscribersStore = useSubscribersStore()
 
-const appState = inject("appState")
+const appState = inject("appState") as AppStateType
 </script>
-
-<style scoped></style>

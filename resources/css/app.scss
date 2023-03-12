@@ -1,6 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "./transitions/_fadeIn.scss";
+@import "./transitions/_slideInRight.scss";
 
 .btn-disabled.loading, .btn[disabled] {
     &.loading {

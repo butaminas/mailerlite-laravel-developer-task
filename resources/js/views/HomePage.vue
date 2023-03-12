@@ -15,7 +15,7 @@
                 STOP. Please try this tool instead!
             </p>
             <button
-                class="btn btn-primary"
+                class="btn-primary btn"
                 @click="$router.push({ name: 'Manage Subscribers' })"
             >
                 Get Started
@@ -23,7 +23,3 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-//
-</script>

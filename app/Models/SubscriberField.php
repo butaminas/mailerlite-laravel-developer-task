@@ -12,7 +12,7 @@ class SubscriberField extends Model
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at', 'subscriber_id', 'id'
+        'created_at', 'updated_at', 'subscriber_id', 'id', 'field'
     ];
 
     protected $appends = ['title'];
