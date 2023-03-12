@@ -55,9 +55,13 @@ The task to submit was to create an API for managing two resources and their rel
 <!-- Features -->
 ### :dart: Features
 
-- Feature 1
-- Feature 2
-- Feature 3
+- Create subscribers with custom fields
+- Manage custom fields
+- Paginated table for listing subscribers
+- Dark mode
+- Front-end tests with Vitest
+- Feature / Unit test with Pest
+- Brotli compress for front-end production files
 
 
 <!-- Env Variables -->
