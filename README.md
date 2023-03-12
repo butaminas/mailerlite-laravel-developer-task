@@ -5,6 +5,7 @@
     This project is an submission for a real Laravel/Vue Developer task used for Laravel/Vue developer recruitment at MailerLite.
     It is not intended to be used as a standalone project (although it could be used as a starter boilerplate), rather, it as an example of code quality, features and capabilities and is intedned to be used as a playground for educational purposes.
   </p>
+</div>
 
 <br />
     
@@ -54,13 +55,9 @@ The task to submit was to create an API for managing two resources and their rel
 <!-- Features -->
 ### :dart: Features
 
-- Create subscribers with custom fields
-- Manage custom fields
-- Paginated table for listing subscribers
-- Dark mode
-- Front-end tests with Vitest
-- Feature / Unit test with Pest
-- Brotli compress for front-end production files
+- Feature 1
+- Feature 2
+- Feature 3
 
 
 <!-- Env Variables -->
