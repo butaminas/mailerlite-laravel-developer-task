@@ -2,7 +2,7 @@
   <h1>MailerLite Laravel developer task</h1>
   
   <p>
-    This project is an submission for a real Laravel/Vue Developer task used for Laravel/Vue developer recruitment at MailerLite.
+    This project is a submission for a Laravel/Vue Developer task used for real Laravel/Vue developer recruitment process at MailerLite.
     It is not intended to be used as a standalone project (although it could be used as a starter boilerplate), rather, it as an example of code quality, features and capabilities and is intedned to be used as a playground for educational purposes.
   </p>
 </div>
